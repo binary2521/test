@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Hello world',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -37,21 +37,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Battery _battery = Battery();
+  // Battery _battery = Battery();
 
-  BatteryState _batteryState;
-  StreamSubscription<BatteryState> _batteryStateSubscription;
-
+  // BatteryState _batteryState;
+  // StreamSubscription<BatteryState> _batteryStateSubscription;
 
   @override
   void initState() {
-    super.initState();
-    _batteryStateSubscription =
-        _battery.onBatteryStateChanged.listen((BatteryState state) {
-          setState(() {
-            _batteryState = state;
-          });
-        });
+    // super.initState();
+    // _batteryStateSubscription =
+    //     _battery.onBatteryStateChanged.listen((BatteryState state) {
+    //       setState(() {
+    //         _batteryState = state;
+    //       });
+    //     });
   }
 
   @override
@@ -62,48 +61,48 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('CoreBinary - Phone Battery Status'),
       ),
       body: Center(
-        child: Text('$_batteryState',style: TextStyle(fontWeight: FontWeight.bold),),
+        child: Text('Hello',style: TextStyle(fontWeight: FontWeight.bold),),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.battery_unknown),
-        onPressed: () async {
-          final int batteryLevel = await _battery.batteryLevel;
-          // ignore: unawaited_futures
-          showDialog<void>(
-            context: context,
-            builder: (_) => AlertDialog(
-              content: Column(
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      if(batteryLevel<=90){
-                        // print('Low battery; Please charge your mobile and continue the transaction.');
-                        showToast("$batteryLevel% Low battery; Please charge your mobile and continue the transaction.");
-                      }
-                      else{
-                        showToast("Your Mobile battery is $batteryLevel%. Go ahead with the transaction");
-                        // print('Your Mobile battery is $batteryLevel%. Go ahead with the transaction');
-                      }
-                    },
-                      child: Text('Battery: $batteryLevel%')),
-                //Text('Your phone has sufficicent battery charge to proceed payment',style: TextStyle(fontWeight: FontWeight.bold)),
-          ],
-              ),
-             actions: <Widget>[
-                TextButton(
-                  child: const Text('OK'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                )
-              ],
-            ),
-
-          );
-          print('$batteryLevel');
-        },
-
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.battery_unknown),
+      //   onPressed: () async {
+      //     final int batteryLevel = await _battery.batteryLevel;
+      //     // ignore: unawaited_futures
+      //     showDialog<void>(
+      //       context: context,
+      //       builder: (_) => AlertDialog(
+      //         content: Column(
+      //           children: [
+      //             GestureDetector(
+      //               onTap: (){
+      //                 if(batteryLevel<=90){
+      //                   // print('Low battery; Please charge your mobile and continue the transaction.');
+      //                   showToast("$batteryLevel% Low battery; Please charge your mobile and continue the transaction.");
+      //                 }
+      //                 else{
+      //                   showToast("Your Mobile battery is $batteryLevel%. Go ahead with the transaction");
+      //                   // print('Your Mobile battery is $batteryLevel%. Go ahead with the transaction');
+      //                 }
+      //               },
+      //                 child: Text('Battery: $batteryLevel%')),
+      //           //Text('Your phone has sufficicent battery charge to proceed payment',style: TextStyle(fontWeight: FontWeight.bold)),
+      //     ],
+      //         ),
+      //        actions: <Widget>[
+      //           TextButton(
+      //             child: const Text('OK'),
+      //             onPressed: () {
+      //               Navigator.pop(context);
+      //             },
+      //           )
+      //         ],
+      //       ),
+      //
+      //     );
+      //     print('$batteryLevel');
+      //   },
+      //
+      // ),
     );
   }
 
@@ -111,14 +110,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() {
     super.dispose();
-    if (_batteryStateSubscription != null) {
-      _batteryStateSubscription.cancel();
+    // if (_batteryStateSubscription != null) {
+    //   _batteryStateSubscription.cancel();
     }
   }
-
-  void showToast(String msg, {int duration, int gravity}) {
-    Toast.show(msg, context, duration: duration, gravity: gravity);
-  }
+  //
+  // void showToast(String msg, {int duration, int gravity}) {
+  //   Toast.show(msg, context, duration: duration, gravity: gravity);
+  // }
 /*  void _charge() {
     var charge = 87;
     if(charge < 90)
@@ -130,4 +129,4 @@ class _MyHomePageState extends State<MyHomePage> {
       print('You Dont have sufficient charge');
     }
   }*/
-}
+// }
